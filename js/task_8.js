@@ -85,9 +85,10 @@ const usersList = [
   },
 ];
 
-const getUsersWithEyeColor = (users, color) => users.reduce((acc, user) => {
-  if (color === user.eyeColor) acc.push(user);
-  return acc;
+const getUsersWithFriend = (users, friendName) => users.reduce((acc, user) => {
+    if (user.friends.includes(friendName)) acc.push(user.name);
+    return acc;
 }, []);
 
-console.log(getUsersWithEyeColor(usersList, 'blue')); // [объект Moore Hensley, объект Sharlene Bush, объект Carey Barr]
+console.log(getUsersWithFriend(usersList, 'Briana Decker')); // [ 'Sharlene Bush', 'Sheree Anthony' ]
+console.log(getUsersWithFriend(usersList, 'Goldie Gentry')); // [ 'Elma Head', 'Sheree Anthony' ]

@@ -85,9 +85,12 @@ const usersList = [
   },
 ];
 
-const getUsersWithEyeColor = (users, color) => users.reduce((acc, user) => {
-  if (color === user.eyeColor) acc.push(user);
-  return acc;
+const getUsersWithAge = (users, min, max) => users.reduce((acc, user) => {
+    if (min <= user.age && user.age <= max) acc.push(user);
+    return acc;
 }, []);
 
-console.log(getUsersWithEyeColor(usersList, 'blue')); // [объект Moore Hensley, объект Sharlene Bush, объект Carey Barr]
+console.log(getUsersWithAge(usersList, 20, 30)); // [объект Ross Vazquez, объект Elma Head, объект Carey Barr]
+
+console.log(getUsersWithAge(usersList, 30, 40));
+// [объект Moore Hensley, объект Sharlene Bush, объект Blackburn Dotson, объект Sheree Anthony]

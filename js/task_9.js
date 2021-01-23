@@ -85,9 +85,9 @@ const usersList = [
   },
 ];
 
-const getUsersWithEyeColor = (users, color) => users.reduce((acc, user) => {
-  if (color === user.eyeColor) acc.push(user);
-  return acc;
-}, []);
+const getNamesSortedByFriendsCount = users => users.sort((a,b) =>{
+    return a.friends.length - b.friends.length;
+});
 
-console.log(getUsersWithEyeColor(usersList, 'blue')); // [объект Moore Hensley, объект Sharlene Bush, объект Carey Barr]
+console.log(getNamesSortedByFriendsCount(usersList));
+// [ 'Moore Hensley', 'Sharlene Bush', 'Elma Head', 'Carey Barr', 'Blackburn Dotson', 'Sheree Anthony', 'Ross Vazquez' ]

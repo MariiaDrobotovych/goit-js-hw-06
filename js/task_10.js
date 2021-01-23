@@ -85,9 +85,16 @@ const usersList = [
   },
 ];
 
-const getUsersWithEyeColor = (users, color) => users.reduce((acc, user) => {
-  if (color === user.eyeColor) acc.push(user);
-  return acc;
-}, []);
 
-console.log(getUsersWithEyeColor(usersList, 'blue')); // [объект Moore Hensley, объект Sharlene Bush, объект Carey Barr]
+const getUniqueSkillsSet = users => {
+    return users.reduce((acc, user) => {
+        user.skills.forEach(skill => acc.add(skill));
+        return acc;
+    }, new Set());
+}
+
+const getSortedUniqueSkills = users =>
+    [...getUniqueSkillsSet(users)].sort((a, b) => a.localeCompare(b));
+
+console.log(getSortedUniqueSkills(usersList));
+// [ 'adipisicing', 'amet', 'anim', 'commodo', 'culpa', 'elit', 'ex', 'ipsum', 'irure', 'laborum', 'lorem', 'mollit', 'non', 'nostrud', 'nulla', 'proident', 'tempor', 'velit', 'veniam' ]

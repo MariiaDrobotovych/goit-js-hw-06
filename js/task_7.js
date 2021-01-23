@@ -85,9 +85,8 @@ const usersList = [
   },
 ];
 
-const getUsersWithEyeColor = (users, color) => users.reduce((acc, user) => {
-  if (color === user.eyeColor) acc.push(user);
-  return acc;
-}, []);
+const calculateTotalBalance = users => users.reduce((total, user) => {
+    return total + user.balance;
+}, 0);
 
-console.log(getUsersWithEyeColor(usersList, 'blue')); // [объект Moore Hensley, объект Sharlene Bush, объект Carey Barr]
+console.log(calculateTotalBalance(usersList)); // 20916
