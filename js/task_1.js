@@ -85,11 +85,94 @@ const usersList = [
   },
 ];
 
+// task 1
 const getUserNames = users => users.reduce((acc, user) => {
   acc.push(user.name);
   return acc;
 }, []);
  
-
 console.log(getUserNames(usersList));
 // [ 'Moore Hensley', 'Sharlene Bush', 'Ross Vazquez', 'Elma Head', 'Carey Barr', 'Blackburn Dotson', 'Sheree Anthony' ]
+
+// task 2
+const getUsersWithEyeColor = (users, color) => users.reduce((acc, user) => {
+  if (color === user.eyeColor) acc.push(user);
+  return acc;
+}, []);
+
+console.log(getUsersWithEyeColor(usersList, 'blue')); // [объект Moore Hensley, объект Sharlene Bush, объект Carey Barr]
+
+
+// task 3
+const getUsersWithGender = (users, gender) => users.reduce((acc, user) => {
+    if (gender === user.gender) acc.push(user.name);
+    return acc;
+}, []);
+
+console.log(getUsersWithGender(usersList, 'male')); // [ 'Moore Hensley', 'Ross Vazquez', 'Carey Barr', 'Blackburn Dotson' ]
+
+// task 4 
+const getInactiveUsers = users => users.reduce((acc, user) => {
+    if (!user.isActive) acc.push(user);
+    return acc;
+}, []);
+
+console.log(getInactiveUsers(usersList)); // [объект Moore Hensley, объект Ross Vazquez, объект Blackburn Dotson]
+
+// task 5
+const getUserWithEmail = (users, email) => users.reduce((acc,user) => {
+    if (email === user.email) acc.push(user);
+    return acc;
+}, []);
+
+console.log(getUserWithEmail(usersList, 'shereeanthony@kog.com')); // {объект пользователя Sheree Anthony}
+console.log(getUserWithEmail(usersList, 'elmahead@omatom.com')); // {объект пользователя Elma Head}
+
+// task 6 
+const getUsersWithAge = (users, min, max) => users.reduce((acc, user) => {
+    if (min <= user.age && user.age <= max) acc.push(user);
+    return acc;
+}, []);
+
+console.log(getUsersWithAge(usersList, 20, 30)); // [объект Ross Vazquez, объект Elma Head, объект Carey Barr]
+
+console.log(getUsersWithAge(usersList, 30, 40));
+// [объект Moore Hensley, объект Sharlene Bush, объект Blackburn Dotson, объект Sheree Anthony]
+
+// task 7 
+const calculateTotalBalance = users => users.reduce((total, user) => {
+    return total + user.balance;
+}, 0);
+
+console.log(calculateTotalBalance(usersList)); // 20916
+
+// task 8 
+const getUsersWithFriend = (users, friendName) => users.reduce((acc, user) => {
+    if (user.friends.includes(friendName)) acc.push(user.name);
+    return acc;
+}, []);
+
+console.log(getUsersWithFriend(usersList, 'Briana Decker')); // [ 'Sharlene Bush', 'Sheree Anthony' ]
+console.log(getUsersWithFriend(usersList, 'Goldie Gentry')); // [ 'Elma Head', 'Sheree Anthony' ]
+
+// task 9 
+const getNamesSortedByFriendsCount = users => users.sort((a,b) =>{
+    return a.friends.length - b.friends.length;
+});
+
+console.log(getNamesSortedByFriendsCount(usersList));
+// [ 'Moore Hensley', 'Sharlene Bush', 'Elma Head', 'Carey Barr', 'Blackburn Dotson', 'Sheree Anthony', 'Ross Vazquez' ]
+
+// task 10
+const getUniqueSkillsSet = users => {
+    return users.reduce((acc, user) => {
+        user.skills.forEach(skill => acc.add(skill));
+        return acc;
+    }, new Set());
+}
+
+const getSortedUniqueSkills = users =>
+    [...getUniqueSkillsSet(users)].sort((a, b) => a.localeCompare(b));
+
+console.log(getSortedUniqueSkills(usersList));
+// [ 'adipisicing', 'amet', 'anim', 'commodo', 'culpa', 'elit', 'ex', 'ipsum', 'irure', 'laborum', 'lorem', 'mollit', 'non', 'nostrud', 'nulla', 'proident', 'tempor', 'velit', 'veniam' ]
