@@ -86,53 +86,37 @@ const usersList = [
 ];
 
 // task 1
-const getUserNames = users => users.reduce((acc, user) => {
-  acc.push(user.name);
-  return acc;
-}, []);
+const getUserNames = users => users.map(user => user.name);
  
 console.log(getUserNames(usersList));
 // [ 'Moore Hensley', 'Sharlene Bush', 'Ross Vazquez', 'Elma Head', 'Carey Barr', 'Blackburn Dotson', 'Sheree Anthony' ]
 
 // task 2
-const getUsersWithEyeColor = (users, color) => users.reduce((acc, user) => {
-  if (color === user.eyeColor) acc.push(user);
-  return acc;
-}, []);
+const getUsersWithEyeColor = (users, color) => users.filter(user => user.eyeColor === color);
 
 console.log(getUsersWithEyeColor(usersList, 'blue')); // [объект Moore Hensley, объект Sharlene Bush, объект Carey Barr]
 
 
 // task 3
 const getUsersWithGender = (users, gender) => users.reduce((acc, user) => {
-    if (gender === user.gender) acc.push(user.name);
-    return acc;
+  return gender === user.gender ? [...acc, user.name] : acc;
 }, []);
 
 console.log(getUsersWithGender(usersList, 'male')); // [ 'Moore Hensley', 'Ross Vazquez', 'Carey Barr', 'Blackburn Dotson' ]
 
 // task 4 
-const getInactiveUsers = users => users.reduce((acc, user) => {
-    if (!user.isActive) acc.push(user);
-    return acc;
-}, []);
+const getInactiveUsers = users => users.filter(user => !user.isActive);
 
 console.log(getInactiveUsers(usersList)); // [объект Moore Hensley, объект Ross Vazquez, объект Blackburn Dotson]
 
 // task 5
-const getUserWithEmail = (users, email) => users.reduce((acc,user) => {
-    if (email === user.email) acc.push(user);
-    return acc;
-}, []);
+const getUserWithEmail = (users, email) => users.find(user => email === user.email);
 
 console.log(getUserWithEmail(usersList, 'shereeanthony@kog.com')); // {объект пользователя Sheree Anthony}
 console.log(getUserWithEmail(usersList, 'elmahead@omatom.com')); // {объект пользователя Elma Head}
 
 // task 6 
-const getUsersWithAge = (users, min, max) => users.reduce((acc, user) => {
-    if (min <= user.age && user.age <= max) acc.push(user);
-    return acc;
-}, []);
+const getUsersWithAge = (users, min, max) => users.filter(user => min <= user.age && user.age <= max);
 
 console.log(getUsersWithAge(usersList, 20, 30)); // [объект Ross Vazquez, объект Elma Head, объект Carey Barr]
 
@@ -140,17 +124,12 @@ console.log(getUsersWithAge(usersList, 30, 40));
 // [объект Moore Hensley, объект Sharlene Bush, объект Blackburn Dotson, объект Sheree Anthony]
 
 // task 7 
-const calculateTotalBalance = users => users.reduce((total, user) => {
-    return total + user.balance;
-}, 0);
+const calculateTotalBalance = users => users.reduce((total, user) => total + user.balance, 0);
 
 console.log(calculateTotalBalance(usersList)); // 20916
 
 // task 8 
-const getUsersWithFriend = (users, friendName) => users.reduce((acc, user) => {
-    if (user.friends.includes(friendName)) acc.push(user.name);
-    return acc;
-}, []);
+const getUsersWithFriend = (users, friendName) => users.filter(user => user.friends.includes(friendName), []);
 
 console.log(getUsersWithFriend(usersList, 'Briana Decker')); // [ 'Sharlene Bush', 'Sheree Anthony' ]
 console.log(getUsersWithFriend(usersList, 'Goldie Gentry')); // [ 'Elma Head', 'Sheree Anthony' ]
